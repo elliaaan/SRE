@@ -1,47 +1,38 @@
-version: '3'
+version: "3.8"
 services:
   flaskapp:
     build:
       context: ./flask
       dockerfile: Dockerfile
     container_name: todo_flask
-    env_file: .env                  
-    environment:
-      - SQLALCHEMY_DATABASE_URI=${SQLALCHEMY_DATABASE_URI}
-      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    env_file: .env
     ports:
-      - 5000:5000
-    depends_on: 
+      - "5000:5000"
+    depends_on:
       - todo_postgres
     networks:
       - mynetworks
 
-  reactapp:
-    build: 
-      context: ./react
-      dockerfile: Dockerfile
-    container_name: todo_react
-    ports:
-      - 80:80
-    depends_on:
-      - flaskapp
-    networks:
-      - mynetworks
-
   todo_postgres:
-    image: postgres:latest
+    image: postgres:15
     container_name: todo_postgres
-    env_file: .env                      
-    ports:
-      - 5440:5432
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+    env_file: .env
     volumes:
       - postgres-volume:/var/lib/postgresql/data
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks: 
+    networks:
+      - mynetworks
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - flaskapp
+    networks:
       - mynetworks
 
 networks:
