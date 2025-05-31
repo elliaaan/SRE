@@ -14,7 +14,6 @@ def create_app(config_class=Config):
     migrate.init_app(app, db)
     jwt.init_app(app)
 
-   
     metrics = PrometheusMetrics(app,
                                 path='/metrics',
                                 group_by='endpoint')
@@ -22,5 +21,10 @@ def create_app(config_class=Config):
     app.register_blueprint(taskBp,    url_prefix='/api/tasks')
     app.register_blueprint(projectBp, url_prefix='/api/projects')
     app.register_blueprint(authBp,    url_prefix='/api/auth')
+
+  
+    @app.route("/crash")
+    def crash():
+        raise Exception("Simulated 500 error")
 
     return app
