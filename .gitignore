@@ -8,3 +8,7 @@ instance/
 .idea/
 .vscode/
 *.db
+
+terraform/terraform-key.json
+terraform/.terraform/
+terraform/terraform.tfstate*
