@@ -22,7 +22,7 @@ jobs:
         run: pip install requests
 
       - name: Run tests
-        run: python test_backend.py
+      run: python flask/test_backend.py
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
