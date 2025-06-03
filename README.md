@@ -15,23 +15,7 @@ PacToDo App is a task and project management application that simplifies the org
 - Back end: Flask, Flask-Migrate, Flask-SQLAlchemy, Flask-Cors, Flask-JWT-Extended, PostgreSQL
 - Container: Docker
 
-## App Development
-### Flow chart
-#### Account Registration
-![Flow chart registration](./readmeimg/PacTodo_Register.png "Flow chart registration")
-#### Login
-![Flow chart login](/readmeimg/PacToDo_Login.png "Flow chart login")
-#### Projects
-![Flow chart projects](/readmeimg/PacToDo_Projects.png "Flow chart projects")
-#### Tasks
-![Flow chart tasks](/readmeimg/PacToDo_Tasks.png "Flow chart tasks")
-#### Logout
-![Flow chart logout](/readmeimg/PacToDo_Logout.png "Flow chart logout")
-
-### ERD
-![ERD of PacToDo App](/readmeimg/TodoERD.png "ERD of PacToDo App")
-
-### Demonstration
+## App Demonstration
 #### Account Registration
 ![Account registration](./readmeimg/testcase_register.gif "Account registration")
 The app displays a registration form to the user, which includes validation for both email and password formats. Email addresses must adhere to the standard email format, and passwords must contain a minimum of 8 characters, including a combination of letters, numbers, and special characters. Additionally, there is a check to ensure that the password entered in the 'password' field matches the one in the 'confirm password' field. The submitted data is sent to the database via the `/api/auth/register` endpoint. The notification, whether indicating the success or failure of the registration, will be displayed to the user.
@@ -79,9 +63,3 @@ git clone https://github.com/naputami/Fullstack-TodoApp.git
 docker compose up
 ```
 4. You can access the application via localhost:80.
-## Conclusion
-All of the application's features currently function as expected. However, there are areas that can be enhanced in the future, including:
-- Enhancing UI Design for improving intuitiveness and accessibility.
-- Enhancing the notification system to make notifications more user-friendly.
-- Enhancing the database design to accommodate more detailed user data.
-- Adding additional features to enhance UX, such as searching for projects by name and sorting tasks by due date and status.
